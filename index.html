@@ -47,9 +47,11 @@
               <a class="header-link" href="#chocolov">Chocolate is loved</a>
             </li>
           </ul>
-          <svg class="menu-icon" width="28" height="28">
-            <use href="./images/icons.svg#icon-menu-icon"></use>
-          </svg>
+          <button class="menu-icon-btn" type="button">
+            <svg class="menu-icon" width="28" height="28">
+              <use href="./images/icons.svg#icon-menu-icon"></use>
+            </svg>
+          </button>
         </nav>
         <ul class="social-list">
           <li class="social-item">
@@ -665,12 +667,14 @@
       </div>
     </footer>
 
+    <!-- backdrop -->
     <div class="backdrop is-open">
       <div class="modal">
         <button
           class="modal-btn"
+          id="close-btn"
           type="button"
-          aria-label="close moadal window"
+          aria-label="close modal window"
         >
           <svg class="modal-btn-icon" width="28" height="28">
             <use href="./images/icons.svg#icon-x-close"></use>
@@ -761,5 +765,89 @@
         </form>
       </div>
     </div>
+    <!-- menu -->
+    <div class="backmenu">
+      <div class="backmenu-modal">
+        <button
+          class="backmenu-modal-btn"
+          id="backmenu-close-btn"
+          type="button"
+          aria-label="close modal window"
+        >
+          <svg class="backmenu-modal-btn-icon" width="28" height="28">
+            <use href="./images/icons.svg#icon-x-close"></use>
+          </svg>
+        </button>
+        <ul class="backmenu-list">
+          <li class="backmenu-item">
+            <a class="backmenu-link" href="#hero">Home</a>
+          </li>
+          <li class="backmenu-item">
+            <a class="backmenu-link" href="#made">How it’s made?</a>
+          </li>
+          <li class="backmenu-item">
+            <a class="backmenu-link" href="#chocolov">Chocolate is loved</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Отримуємо посилання на кнопку закриття та фон
+        const closeButton = document.getElementById("close-btn");
+        const backdrop = document.querySelector(".backdrop");
+
+        // Додаємо подію click для кнопки закриття
+        closeButton.addEventListener("click", function () {
+          // Закриваємо модальне вікно
+          backdrop.classList.remove("is-open");
+        });
+
+        // Додаємо функцію для відкриття модального вікна
+        function openModal() {
+          backdrop.classList.add("is-open");
+        }
+
+        // Викликаємо функцію для відкриття модального вікна
+        openModal();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Отримуємо посилання на кнопку меню та елемент з класом "backmenu"
+        const menuButton = document.querySelector(".menu-icon-btn");
+        const backMenu = document.querySelector(".backmenu");
+
+        // Додаємо подію "click" на кнопку меню
+        menuButton.addEventListener("click", function () {
+          // Додаємо клас "is-open" до елементу з класом "backmenu"
+          backMenu.classList.add("is-open");
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Отримуємо посилання на елементи backmenu та всі пункти меню
+        const backmenu = document.querySelector(".backmenu");
+        const menuItems = document.querySelectorAll(".backmenu-link");
+
+        // Додаємо подію "click" для кожного пункту меню
+        menuItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            backmenu.classList.remove("is-open");
+          });
+        });
+
+        // Отримуємо посилання на кнопку закриття вікна backmenu
+        const backmenuCloseButton = document.querySelector(
+          ".backmenu-modal-btn"
+        );
+
+        // Додаємо подію "click" для кнопки закриття вікна backmenu
+        backmenuCloseButton.addEventListener("click", function () {
+          backmenu.classList.remove("is-open");
+        });
+      });
+    </script>
   </body>
 </html>
